@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  email: 
+  first_name: 
+  last_name: 
+  hashed_password: 
+  other_email: 
+
+two:
+  email: 
+  first_name: 
+  last_name: 
+  hashed_password: 
+  other_email: 
