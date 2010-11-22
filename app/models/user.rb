@@ -1,13 +1,37 @@
+#User
+#
+#email						string
+#first_name				string
+#last_name				string
+#hashed_password	string
+#other_email string
 require 'digest'#For Encrypting passwords
 class User < ActiveRecord::Base
 	attr_accessor :password
+	
+	belongs_to :couple
+	has_one :user
+	belongs_to :user
+	
+	validates :email, :presence => true,
+								:uniqueness => true
+	validates :first_name, :presence => true,
+	validates :last_name, :presence => true,
+	validates :password, :confirmation => true,
+									:length => { :within => 4..20},
+									:presence => true,
+									:if => :password_required?
 
+	before_save :encrypt_new_password, :clean_formats
+	
+	
 #A process before saving to make accounts seem pretty
 	def clean_formats
 		self.first_name.capitalize!
 		self.last_name.capitalize!
 		self.city.capitalize!
 		self.email.capitalize!
+		self.other_email.capitalize! if not self.other_email.nil?
 	end
 	
 	#Checks for a match for logging in
