@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
 	before_save :encrypt_new_password, :clean_formats, :link_couple
 	
 	
+	#Helper methods
+	def significant_other
+		self.user
+	end
 #A process before saving to make accounts seem pretty
 	def clean_formats
 		self.first_name.capitalize!
