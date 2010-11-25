@@ -29,7 +29,6 @@ class User < ActiveRecord::Base
 	def clean_formats
 		self.first_name.capitalize!
 		self.last_name.capitalize!
-		self.city.capitalize!
 		self.email.capitalize!
 		self.other_email.capitalize! if not self.other_email.nil?
 	end

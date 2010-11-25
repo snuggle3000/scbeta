@@ -2,10 +2,12 @@
 	<% if @user.errors.any? %>
 		<%= pluralize(@user.errors.count, "error") %> exist.
 		<ul>
-			<% @article.errors.full_messages_each do |msg| %>
+			<% @user.errors.full_messages.each do |msg|%>
 				<li><%= msg %></li>
 			<% end %>
 		</ul>
+	<% else %>
+	<%= "dicks" %>
 	<% end %>
 
 	Create a New Account:<p />

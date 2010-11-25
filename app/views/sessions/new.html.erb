@@ -1,1 +1,11 @@
 <h4> Log in </h4>
+<% form_tag session_path do %>
+	<%= label_tag :email %>
+	<%= text_field_tag :email %><br />
+
+	<%= label_tag :password %>
+	<%= password_field_tag :password %><br />
+
+	<%= submit_tag "Login" %> <p />
+	No Account? <%= link_to "Sign Up", signup_path %>
+<% end %>
