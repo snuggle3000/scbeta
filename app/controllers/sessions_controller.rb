@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 			redirect_to root_path, :notice => "Successful Log In"
 		else
 			flash.now[:alert] = "Invalid login/password combination"
-			render :action => "new"
+			render :action => 'new'
 		end
 	end
 	def destroy

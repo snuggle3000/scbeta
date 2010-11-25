@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 									:presence => true,
 									:if => :password_required?
 
-	before_save :encrypt_new_password, :clean_formats
+	before_save :encrypt_new_password, :clean_formats, :link_couple
 	
 	
 #A process before saving to make accounts seem pretty
@@ -33,6 +33,22 @@ class User < ActiveRecord::Base
 		self.other_email.capitalize! if not self.other_email.nil?
 	end
 	
+	def link_couple
+		return true if (self.user) and (self.user.user == self)
+		return if self.other_email.nil?
+		puts "progress"
+		other = User.find_by_email(self.other_email)
+		return if other.nil?
+		puts "progres+1"
+		return if other.other_email != self.email
+		puts "progress + 3"
+
+		self.user = other
+		other.user = self
+		couple = Couple.new
+		couple.users << self << other
+		couple.save
+	end
 	#Checks for a match for logging in
 	def self.authenticate(email, password)
 		email.downcase!
