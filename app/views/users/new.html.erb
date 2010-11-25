@@ -1,0 +1,34 @@
+<%= form_for(@user) do |f| %>
+	<% if @user.errors.any? %>
+		<%= pluralize(@user.errors.count, "error") %> exist.
+		<ul>
+			<% @article.errors.full_messages_each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	<% end %>
+
+	Create a New Account:<p />
+	<%= f.label :email %>
+	<%= f.text_field :email %><br />
+	
+	<%= f.label :first_name %>
+	<%= f.text_field :first_name %><br />
+	
+	<%= f.label :last_name %>
+	<%= f.text_field :last_name %><br />
+
+	<%= f.label :password %>
+	<%= f.password_field :password %><br />
+	
+	<%= f.label :password_confirmation %>
+	<%= f.password_field :password_confirmation %><p />
+	
+	Significant Other's Email
+	<%= f.text_field :other_email %><br />
+	
+	<%= f.submit "Sign Up" %><p />
+	
+	Already have an account? <%= link_to "Log in", login_path %>
+	
+<% end %>

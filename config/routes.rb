@@ -7,5 +7,5 @@ SnuggleCloud::Application.routes.draw do
 	match '/about' => "static#about", :as => "about"
 	match '/login' => "sessions#new", :as => "login"
 	match '/logout' => "sessions#destroy", :as => "logout"
-
+	match '/signup' => "users#new", :as => "signup"
 end
